@@ -3,21 +3,27 @@
     <!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
 
     <div class = "container">
-        <h1>All Songs </h1>
+        <h1>View Songs </h1>
         <table class = 'table'>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Song Length</th>
-                    <th>Image</th>
-        </thead>
         <tbody>
-            @foreach ($songs as $song)
             <tr>
-                <td><a href = "{{route('songs.show',$song) }}" >{{ $song->song_name}} </a></td>
-                <td> {{ $song->song_description}} </td>
-                <td>{{ $song->song_length}} </a></td>
+                <td> <strong> Title </strong></td>
+                <td>{{ $song->song_name}} </td>
+            </tr>
+
+
+            <tr>
+                <td> <strong> Description </strong></td>
+                <td>{{ $song->song_description}} </td>
+            </tr>
+
+            <tr>
+                <td> <strong> Length </strong></td>
+                <td>{{ $song->song_length}} </td>
+            </tr>
+
+            <tr>
+                <td> <strong> Cover </strong></td>
                 <td>
                     @if ($song->song_image)
                     <img src="{{ $song->song_image}}"
@@ -27,7 +33,7 @@
                     @endif
                 </td>
             </tr>
-            @endforeach
+
         </tbody>
         </table>
     </div>

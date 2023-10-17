@@ -36,9 +36,10 @@ class SongController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Song $song)
     {
-        //
+        // 
+        return view('songs.show')->with('song',$song);
     }
 
     /**
