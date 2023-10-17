@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-
+use App\Http\Controllers\SongController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +18,5 @@ use App\Http\Controllers\PageController;
 //     return view('welcome');
 // });
 
-Route::get('/', [PageController::class, 'home'])->name('home');
+// Route::get('/', [PageController::class, 'home'])->name('home');
+Route::resource('/songs',SongController::class); 

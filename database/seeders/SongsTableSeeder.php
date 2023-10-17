@@ -16,6 +16,6 @@ class SongsTableSeeder extends Seeder
     public function run(): void
     {
         //redo migrate and seeding after changing the number, it adds to the number, if theres already 20 , changed to 5 and ran will have 25
-        Song::factory(5)->create();
+        Song::factory(20)->create();
     }
 }
