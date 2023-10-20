@@ -23,6 +23,7 @@ class SongController extends Controller
     public function create()
     {
         //
+        return view('songs.create');
     }
 
     /**
@@ -31,6 +32,18 @@ class SongController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'song_name' => 'required'
+        ]);
+
+        Song::create([
+            'song_name' => $request->song_name,
+            'song_description' =>  $request->song_description,
+            'song_length' => $request->song_length,
+            'song_image' => $request->song_image
+        ]);
+
+        return to_route('songs.index');
     }
 
     /**

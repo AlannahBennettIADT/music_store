@@ -12,6 +12,6 @@ class Song extends Model
         'song_name',
         'song_length',
         'song_description',
-        'song_image',
+        'song_image'
     ];
 }

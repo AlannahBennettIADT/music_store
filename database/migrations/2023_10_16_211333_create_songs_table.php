@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('song_name');
             $table->text('song_description');
-            $table->string('song_length');
+            $table->text('song_length');
             $table->string('song_image');
             $table->timestamps();
         });
