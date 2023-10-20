@@ -19,7 +19,7 @@ class SongFactory extends Factory
         return [
             'song_name' => fake()->sentence,
             'song_description' => fake()->paragraph,
-            'song_length' => fake()->sentence,
+            'song_length' => fake()->time,
             'song_image' => fake()->imageUrl,
         ];
     }

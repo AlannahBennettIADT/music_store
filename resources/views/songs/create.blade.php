@@ -18,7 +18,7 @@
 
         <div class="form-group">
             <label for="song_length">Song Length</label>
-            <input type="text" name="song_length" id="song_length" class="
+            <input type="time" name="song_length" id="song_length" class="
             form-control {{ $errors->has('song_length') ? 'is-invalid' : '' }}" 
             value="{{ old('song_length') }}" placeholder="Enter Song Length">
             @if($errors->has('song_length'))
