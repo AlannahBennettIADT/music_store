@@ -16,6 +16,18 @@
             <!-- Add a song button, routes to create view -->
             <a href="{{ route('songs.create') }}" class="btn-link btn-lg mb-2">Add a Song</a>
 
+
+            <!-- Filtering form with a dropdown menu for sorting -->
+            <form action="{{ url('/songs') }}" method="get">
+                <label for="sort_order">Sort by Song Name:</label>
+                <select name="sort_order" id="sort_order">
+                    <option value="asc" @if(request('sort_order') == 'asc') selected @endif>Ascending</option>
+                    <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
+                </select>
+                <input type="submit" value="Sort">
+            </form>
+
+
             <!-- Display every song -->
             @forelse ($songs as $song)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">

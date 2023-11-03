@@ -10,17 +10,40 @@ class SongController extends Controller
     /**
      * Display a listing of all the Songs.
      */
-    public function index()
-    {
-        //inside the songs variable is the model song calling all
-        $songs = Song::all();
+    // public function index()
+    // {
+    //     //inside the songs variable is the model song calling all
+    //     $songs = Song::all();
 
-        //show view index ( home page ), compact creates an array from a list of variable names 
-        //where the variable names become the keys. It's a way to pass variables to views thats more readable and consise.
+    //     //show view index ( home page ), compact creates an array from a list of variable names 
+    //     //where the variable names become the keys. It's a way to pass variables to views thats more readable and consise.
         
+    //     return view('songs.index', compact('songs'));
+    // }
+
+    public function index(Request $request)
+    {
+        $query = Song::query();
+    
+        // Check if a filter is applied
+        if ($request->has('sort_order')) {
+            // If the 'sort_order' parameter is present in the request, use it for sorting
+            $sortOrder = $request->input('sort_order');
+            $query->orderBy('song_name', $sortOrder);
+        } else {
+            // No filter applied, use the default sorting (ascending)
+            $query->orderBy('id', 'asc');
+        }
+    
+        $songs = $query->get();
+    
         return view('songs.index', compact('songs'));
     }
+    
+    
+    
 
+    // Other CRUD methods: create, store, edit, update, destroy, etc.
     /**
      * Show the form for creating a new Song.
      */
