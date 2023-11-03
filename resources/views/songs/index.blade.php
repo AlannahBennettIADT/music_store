@@ -13,9 +13,17 @@
                 {{session('success')}}
             </x-alert-success>
             
-            <!-- Add a song button, routes to create view -->
-            <a href="{{ route('songs.create') }}" class="btn-link btn-lg mb-2">Add a Song</a>
+            <!-- making the Add song and Sorting on the same page -->
 
+            <div style="display: flex; align-items: center;">
+            <!-- Add a song button, routes to create view -->
+            <a href="{{ route('songs.create') }}" 
+            class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm 
+            hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 
+            disabled:opacity-25 transition ease-in-out duration-150">Add a Song</a> 
+
+            <!-- Add spacing between the link and the form -->
+            <div style="margin-left: 50px;"></div>
 
             <!-- Filtering form with a dropdown menu for sorting -->
 
@@ -25,16 +33,19 @@
             -->
 
             <form action="{{ url('/songs') }}" method="get">
-                <label for="sort_order">Sort by Song Name:</label>
+                <label for="sort_order" class="inline-flex items-centerfont-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+                    Sort by Song Name:</label>
                 <select name="sort_order" id="sort_order">
                     <option value="asc" @if(request('sort_order') == 'asc') selected @endif>Ascending</option>
                     <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
                 </select>
                 <input type="submit" class="sort-button" value="Sort">
-            </form>
+            </form> 
+        </div>
+  
             @php
                 $currentPage = request('page', 1); // Default to the first page if 'page' is not specified in the request
-                $itemsPerPage = 10; // Define the number of items per page
+                $itemsPerPage = 10; //not working yet
             @endphp
 
             <!-- Display every song -->
