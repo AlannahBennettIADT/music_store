@@ -36,6 +36,9 @@ class SongController extends Controller
         }
     
         $songs = $query->get();
+        
+        // Use pagination with a default number of items per page (e.g., 10)
+        $songs = $query->paginate(10);
     
         return view('songs.index', compact('songs'));
     }

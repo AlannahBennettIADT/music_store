@@ -43,10 +43,6 @@
             </form> 
         </div>
   
-            @php
-                $currentPage = request('page', 1); // Default to the first page if 'page' is not specified in the request
-                $itemsPerPage = 10; //not working yet
-            @endphp
 
             <!-- Display every song -->
             @forelse ($songs as $song)
@@ -68,21 +64,13 @@
             @empty
             <p>No songs</p>
             @endforelse
+
             <!-- Pagination links -->
-
             <div class="pagination">
-                @if ($currentPage > 1)
-                    <a href="{{ url('/songs?page=' . ($currentPage - 1)) }}">Previous</a>
-                @endif
-
-                @for ($i = 1; $i <= ceil(count($songs) / $itemsPerPage); $i++)
-                    <a href="{{ url('/songs?page=' . $i) }}" @if ($i == $currentPage) class="active" @endif>{{ $i }}</a>
-                @endfor
-
-                @if ($currentPage < ceil(count($songs) / $itemsPerPage))
-                    <a href="{{ url('/songs?page=' . ($currentPage + 1)) }}">Next</a>
-                @endif
+                {{ $songs->links() }}
             </div>
+
+            
         </div>
     </div>
 </x-app-layout>
