@@ -1,34 +1,43 @@
-@extends('layouts.app')
-@section('content')
-    <!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('All Songs') }}
+        </h2>
+    </x-slot>
 
-    <div class = "container">
-        <h1>All Songs </h1>
-        <table class = 'table'>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Song Length</th>
-                    <th>Image</th>
-        </thead>
-        <tbody>
-            @foreach ($songs as $song)
-            <tr>
-                <td><a href = "{{route('songs.show',$song) }}" >{{ $song->song_name}} </a></td>
-                <td> {{ $song->song_description}} </td>
-                <td>{{ $song->song_length}} </a></td>
-                <td>
-                    @if ($song->song_image)
-                    <img src="{{ $song->song_image}}"
-                    alt="{{ $song->title}}" width="100">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <!-- Created Song Success Alert -->
+            <x-alert-success>
+                {{session('success')}}
+            </x-alert-success>
+            
+            <!-- Add a song button, routes to create view -->
+            <a href="{{ route('songs.create') }}" class="btn-link btn-lg mb-2">Add a Song</a>
+
+            <!-- Display every song -->
+            @forelse ($songs as $song)
+                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                    <h2 class="font-bold text-2xl">
+                        <a href="{{ route('songs.show', $song) }}">{{ $song->song_name }}</a>
+                    </h2>
+                    <p class="mt-2">
+                        {{ $song->song_description }} <br>
+                        {{$song->song_length}} <br>
+                        @if ($song->song_image)
+                        <img src="{{asset($song->song_image)}}" 
+                        alt="{{ $song->song_name }}" width="100">
                     @else
                         No Image
                     @endif
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-        </table>
+                    </p>
+
+                </div>
+            @empty
+            <p>No songs</p>
+            @endforelse
+            
+        </div>
     </div>
-@endsection
+</x-app-layout>

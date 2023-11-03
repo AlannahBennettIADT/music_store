@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Song extends Model
 {
     use HasFactory;
+    //protection against mass assignment - can set specific attributes to guarded instead of fillable if needed.
     protected $fillable = [
         'song_name',
         'song_length',
         'song_description',
-        'song_image'
+        'song_image',
     ];
 }
