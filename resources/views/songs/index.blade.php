@@ -30,7 +30,7 @@
                     <option value="asc" @if(request('sort_order') == 'asc') selected @endif>Ascending</option>
                     <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
                 </select>
-                <input type="submit" value="Sort">
+                <input type="submit" class="sort-button" value="Sort">
             </form>
             @php
                 $currentPage = request('page', 1); // Default to the first page if 'page' is not specified in the request
@@ -53,7 +53,6 @@
                         No Image
                     @endif
                     </p>
-
                 </div>
             @empty
             <p>No songs</p>
