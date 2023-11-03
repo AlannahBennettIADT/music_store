@@ -83,7 +83,7 @@ class SongController extends Controller
      */
     public function edit(Song $song)
     {
-        //
+        //Edit Specific Song: , go to song edit with the song index that is clicked on ex: songs/edit/1
         return view('songs.edit')->with('song',$song);
     }
 
