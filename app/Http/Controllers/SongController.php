@@ -31,13 +31,13 @@ class SongController extends Controller
             $sortOrder = $request->input('sort_order');
             $query->orderBy('song_name', $sortOrder);
         } else {
-            // No filter applied, use the default sorting (ascending)
+            // doesn't automatically sort 
             $query->orderBy('id', 'asc');
         }
     
         $songs = $query->get();
-        
-        // Use pagination with a default number of items per page (e.g., 10)
+
+        // Use pagination with a default number of items per page (10)
         $songs = $query->paginate(10);
     
         return view('songs.index', compact('songs'));

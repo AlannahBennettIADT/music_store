@@ -69,8 +69,6 @@
             <div class="pagination">
                 {{ $songs->links() }}
             </div>
-
-            
         </div>
     </div>
 </x-app-layout>
