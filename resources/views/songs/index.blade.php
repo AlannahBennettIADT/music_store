@@ -1,4 +1,4 @@
-<!-- Index Page -->
+<!-- Index Page View-->
 
 <x-app-layout>
     <x-slot name="header">

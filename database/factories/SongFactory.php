@@ -1,5 +1,11 @@
 <?php
 
+/* Song Factory:
+    -  Used for generating fake data for testing purposes
+	- Makes it easy to populate database with data
+    - Specific to Song Model
+*/
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,6 +20,8 @@ class SongFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+     //Creates fake data
     public function definition(): array
     {
         return [

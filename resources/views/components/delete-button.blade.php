@@ -1,5 +1,4 @@
-<!-- 
-DELETE BUTTON:
+<!-- DELETE BUTTON:
     On submit: will return a confirmation window
     CSRF - checking same user session is the same user deleting song
     method('DELETE') - HTTP request method -->

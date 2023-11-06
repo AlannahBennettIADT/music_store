@@ -29,6 +29,7 @@
 
             <!-- Page Content -->
             <main>
+                <!-- Views go in slot -->
                 {{ $slot }}
             </main>
         </div>

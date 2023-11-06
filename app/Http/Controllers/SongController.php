@@ -1,4 +1,9 @@
 <?php
+/* Song Controller:
+- Made Specific resource controller, comes with CRUD boilerplate code
+- The controller is the coordinator, listens to what user does and tells the view how to show it, (flow of the application)
+- Most routes lead here, the function tells the program what to do and what view to return
+*/
 
 namespace App\Http\Controllers;
 
@@ -8,7 +13,7 @@ use App\Models\Song;
 class SongController extends Controller
 {
 
-    // Old Index function, before adding queries
+    //  OLD INDEX FUNCTION, before adding queries
     // public function index()
     // {
     //     //inside the songs variable is the model song calling all
@@ -47,16 +52,16 @@ class SongController extends Controller
     }
     
     
-    
-
     // Other CRUD methods: create, store, edit, update, destroy, etc.
+
+
     /**
      * Show the form for creating a new Song.
      */
 
     public function create()
     {
-        //
+        //returns create view
         return view('songs.create');
     }
 
@@ -103,7 +108,7 @@ class SongController extends Controller
      */
     public function show(Song $song)
     {
-        // 
+        // returns show view, uses song id 
         return view('songs.show')->with('song',$song);
     }
 
