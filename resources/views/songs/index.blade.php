@@ -1,3 +1,5 @@
+<!-- Index Page -->
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -8,7 +10,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <!-- Created Song Success Alert -->
+            <!-- Created Song Success Alert (shows when song is created) -->
             <x-alert-success>
                 {{session('success')}}
             </x-alert-success>
@@ -44,7 +46,9 @@
         </div>
   
 
-            <!-- Display every song -->
+            <!-- Display every song 
+                Blade directives: shortcuts for PHP loops -->
+
             @forelse ($songs as $song)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">

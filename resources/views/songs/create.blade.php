@@ -36,12 +36,11 @@
                     <x-textarea
                         type="text"
                         name="song_description"
-                        rows="10"
+                        rows="5"
                         field="song_description"
-                        placeholder="song description..."
-                        class="w-full mt-6"
-                        :value="@old('song_description')">
-                    </x-textarea>
+                        :value="@old('song_description')"
+                        placeholder="Song Description"
+                        class="w-full mt-6"></x-textarea>
 
                   <!-- Created file input component to upload song covers. -->
                     <x-file-input

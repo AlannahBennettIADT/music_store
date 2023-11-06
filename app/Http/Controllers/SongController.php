@@ -7,9 +7,8 @@ use App\Models\Song;
 
 class SongController extends Controller
 {
-    /**
-     * Display a listing of all the Songs.
-     */
+
+    // Old Index function, before adding queries
     // public function index()
     // {
     //     //inside the songs variable is the model song calling all
@@ -21,6 +20,10 @@ class SongController extends Controller
     //     return view('songs.index', compact('songs'));
     // }
 
+    
+    /**
+     * Display a listing of all the Songs.
+     */
     public function index(Request $request)
     {
         $query = Song::query();
