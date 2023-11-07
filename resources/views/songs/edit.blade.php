@@ -50,16 +50,22 @@
                         class="w-full mt-6"
                         :value="@old('song_description',$song->song_description)">
                     </x-textarea>
-                    
+
+
                     <!-- Created file input component -->
-                    <x-file-input
+                    <x-song-cover
                         type="file"
-                        name="song_image"
-                        placeholder="Song Cover"
-                        class="w-full mt-6"
+                        name="song_image" 
+                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        placeholder="Song Image"
                         field="song_image"
-                        :value="@old('song_image',$song->song_image_name)"> <!-- song_image_name or song_image? -->
-                    </x-file-input>
+                        :value="old('song_image', $song->song_image)">
+                    </x-song-cover>
+
+
+                    <img src="{{asset($song->song_image)}}" alt="{{ $song->song_name }}" width="100">
+
+
                     
 
                     <x-primary-button class="mt-6">Save Song</x-primary-button>

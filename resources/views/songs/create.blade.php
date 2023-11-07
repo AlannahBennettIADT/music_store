@@ -46,14 +46,14 @@
                         class="w-full mt-6"></x-textarea>
 
                   <!-- Created file input component to upload song covers. -->
-                    <x-file-input
+                    <x-song-cover
                         type="file"
                         name="song_image"
                         placeholder="Song Cover"
                         class="w-full mt-6"
                         field="song_image"
-                        :value="@old('song_image')">>
-                    </x-file-input>
+                        :value="old('song_image')">>
+                    </x-song-cover>
 
                     <x-primary-button class="mt-6">Save Song</x-primary-button>
                 </form>

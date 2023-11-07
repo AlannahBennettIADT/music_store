@@ -1,8 +1,3 @@
-<!-- 
-    file input component used for song cover upload :
-
-    props is a blade directive defining the data passed through ( field value etc) 
--->
 
 <div>
 
@@ -16,4 +11,3 @@
 <div class="text-red-600 text-sm">{{ $message }}</div>
 @enderror
 </div>
-
