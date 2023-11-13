@@ -41,6 +41,11 @@ Route::middleware('auth')->group(function () {
 
 
 //CRUD functionality
-Route::resource('/songs',SongController::class);
+// Route::resource('/songs',SongController::class);
+
+//CRUD functionality with user and admin
+
+Route::resource('admin/songs',AdminSongController::class)->middleware(['auth'])->names('admin.songs');
+Route::resource('user/songs',UserSongController::class)->middleware(['auth'])->names('user.songs')->only(['index','show']);
 
 require __DIR__.'/auth.php';
