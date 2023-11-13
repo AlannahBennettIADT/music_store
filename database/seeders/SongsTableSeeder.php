@@ -25,5 +25,8 @@ class SongsTableSeeder extends Seeder
         //redo migrate and seeding after changing the number, 
         //it adds to the number, if theres already 20 , changed to 5 and ran will have 25
         Song::factory(20)->create();
+
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

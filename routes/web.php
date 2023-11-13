@@ -3,9 +3,14 @@
     - Navigate the user through the program, this is for declaring routes
     - Resource route makes CRUD functions
 */
+
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SongController;
+
+use App\Http\Controllers\Admin\SongController as AdminSongController;
+use App\Http\Controllers\User\SongController as UserSongController;
+
 
 /*
 |--------------------------------------------------------------------------
