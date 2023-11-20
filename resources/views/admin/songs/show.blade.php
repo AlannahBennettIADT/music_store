@@ -49,8 +49,8 @@
                     </table>
                     
                     <!-- Added Edit and Delete buttons, routing to specific functions in song controller-->
-                    <x-primary-button><a href="{{ route('songs.edit',$song) }}"> Edit</a></x-primary-button>
-                    <x-delete-button :route="route('songs.destroy', $song)" text="Delete Song" />
+                    <x-primary-button><a href="{{ route('admin.songs.edit',$song) }}"> Edit</a></x-primary-button>
+                    <x-delete-button :route="route('admin.songs.destroy', $song)" text="Delete Song" />
 
                 </div>
             </div>

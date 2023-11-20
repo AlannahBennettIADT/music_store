@@ -8,8 +8,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Admin\SongController as AdminSongController;
-use App\Http\Controllers\User\SongController as UserSongController;
+use App\Http\Controllers\admin\SongController as AdminSongController;
+use App\Http\Controllers\user\SongController as UserSongController;
+
 
 
 /*
@@ -45,7 +46,23 @@ Route::middleware('auth')->group(function () {
 
 //CRUD functionality with user and admin
 
-Route::resource('admin/songs',AdminSongController::class)->middleware(['auth'])->names('admin.songs');
+Route::resource('admin/songs',AdminSongController::class)->names('admin.songs');
 Route::resource('user/songs',UserSongController::class)->middleware(['auth'])->names('user.songs')->only(['index','show']);
+
+//debugging login error
+
+// use App\Models\User;
+
+// Route::get('/test-login', function () {
+//     $user = User::where('email', 'alannah@olus.education')->first();
+
+//     if ($user && password_verify('Jaaab2004', $user->password)) {
+//         // Passwords match
+//         dd('Passwords match');
+//     } else {
+//         // Passwords do not match
+//         dd('Passwords do not match');
+//     }
+// });
 
 require __DIR__.'/auth.php';

@@ -19,7 +19,7 @@
 
             <div style="display: flex; align-items: center;">
             <!-- Add a song button, routes to create view -->
-            <a href="{{ route('songs.create') }}" 
+            <a href="{{ route('admin.songs.create') }}" 
             class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm 
             hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 
             disabled:opacity-25 transition ease-in-out duration-150">Add a Song</a> 
@@ -34,6 +34,10 @@
             if request is a Blade template directive that starts an "if" statement. It checks if the value of the 'sort_order' 
             -->
 
+            <!-- 
+                OLD - BEFORE USER AUTHENTICATION
+                
+            
             <form action="{{ url('/songs') }}" method="get">
                 <label for="sort_order" class="inline-flex items-centerfont-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
                     Sort by Song Name:</label>
@@ -42,7 +46,20 @@
                     <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
                 </select>
                 <input type="submit" class="sort-button" value="Sort">
-            </form> 
+            </form>  -->
+
+
+            <form action="{{ auth()->user()->hasRole('admin') ? route('admin.songs.index') : route('user.songs.index') }}" method="get">
+            <label for="sort_order" class="inline-flex items-center font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+                Sort by Song Name:
+            </label>
+            <select name="sort_order" id="sort_order">
+                <option value="asc" @if(request('sort_order') == 'asc') selected @endif>Ascending</option>
+                <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
+            </select>
+            <input type="submit" class="sort-button" value="Sort">
+        </form>
+
         </div>
   
 
@@ -52,7 +69,7 @@
             @forelse ($songs as $song)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">
-                        <a href="{{ route('songs.show', $song) }}">{{ $song->song_name }}</a>
+                        <a href="{{ route('admin.songs.show', $song) }}">{{ $song->song_name }}</a>
                     </h2>
                     <p class="mt-2">
                         {{ $song->song_description }} <br>

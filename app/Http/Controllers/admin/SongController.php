@@ -5,9 +5,11 @@
 - Most routes lead here, the function tells the program what to do and what view to return
 */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Song;
 
 class SongController extends Controller
@@ -31,6 +33,9 @@ class SongController extends Controller
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         $query = Song::query();
     
         // Check if a filter is applied
@@ -48,7 +53,7 @@ class SongController extends Controller
         // Use pagination with a default number of items per page (10)
         $songs = $query->paginate(10);
     
-        return view('songs.index', compact('songs'));
+        return view('admin.songs.index', compact('songs'));
     }
     
     
@@ -61,8 +66,10 @@ class SongController extends Controller
 
     public function create()
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         //returns create view
-        return view('songs.create');
+        return view('admin.songs.create');
     }
 
     /**
@@ -70,6 +77,8 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         //Create wasn't working so I bug tested to see how far into the function the program gets:
         // testing to see if it goes into the store function - it does
         // return to_route('songs.index');
@@ -100,7 +109,7 @@ class SongController extends Controller
         ]);
 
         //This reroutes to index after the book is created and calls the alert success component, inside the slot will be the message.
-        return to_route('songs.index')->with('success','Song created successfully');
+        return to_route('admin.songs.index')->with('success','Song created successfully');
     }
 
     /**
@@ -108,8 +117,10 @@ class SongController extends Controller
      */
     public function show(Song $song)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         // returns show view, uses song id 
-        return view('songs.show')->with('song',$song);
+        return view('admin.songs.show')->with('song',$song);
     }
 
     /**
@@ -117,8 +128,10 @@ class SongController extends Controller
      */
     public function edit(Song $song)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         //Edit Specific Song: , go to song edit with the song index that is clicked on ex: songs/edit/1
-        return view('songs.edit')->with('song',$song);
+        return view('admin.songs.edit')->with('song',$song);
     }
 
     /**
@@ -126,6 +139,8 @@ class SongController extends Controller
      */
     public function update(Request $request, Song $song)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         //same validation as create function
         $request->validate([
             'song_name' => 'required',
@@ -152,7 +167,7 @@ class SongController extends Controller
         ]);
 
         //This reroutes to show after the book is edited and calls the alert success component, inside the slot will be the message.
-        return to_route('songs.show',$song)->with('success','Song updated successfully');
+        return to_route('admin.songs.show',$song)->with('success','Song updated successfully');
 
     }
 
@@ -161,11 +176,13 @@ class SongController extends Controller
      */
     public function destroy(Song $song)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         // Delete the song
         $song->delete();
     
         // Redirect to a route or view after deleting the song
-        return redirect()->route('songs.index')->with('success', 'Song deleted successfully');
+        return redirect()->route('admin.songs.index')->with('success', 'Song deleted successfully');
     }
     
 }

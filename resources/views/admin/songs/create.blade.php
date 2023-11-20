@@ -12,7 +12,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <!-- routing to store after submitting, POST HTTP request, multipart for the file and input data -->
-                <form action="{{ route('songs.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.songs.store') }}" method="post" enctype="multipart/form-data">
 
                     <!-- CSRF- Cross Site Request Forgeries (Middleware detecting CSRF tokens to make sure 
                     the same user that is submitting the form is the same that is using the session) -->
