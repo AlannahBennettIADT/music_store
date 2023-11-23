@@ -40,6 +40,13 @@
                             </tr>
 
                             <tr>
+                                <td class="font-bold ">Song Album id </td>
+                                <td>{{ $song->album_id }}</td>
+                            </tr>
+
+                            
+
+                            <tr>
                                 <td class="font-bold ">Cover Image </td>
                                 <!-- use the asset function, access the file $book->book_image in the folder storage/images -->
                                 <td><img src="{{asset($song->song_image)}}" 

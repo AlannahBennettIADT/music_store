@@ -9,7 +9,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
+use App\Models\Album;
 
 
 
@@ -22,5 +22,11 @@ class Song extends Model
         'song_length',
         'song_description',
         'song_image',
+        'album_id'
     ];
+
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
+    }
 }

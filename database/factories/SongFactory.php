@@ -18,7 +18,7 @@ class SongFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * 
      */
 
      //Creates fake data
