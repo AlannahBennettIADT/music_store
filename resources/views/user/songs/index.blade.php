@@ -69,6 +69,8 @@
                         <a href="{{ route('user.songs.show', $song) }}">{{ $song->song_name }}</a>
                     </h2>
                     <p class="mt-2">
+                    <h3 class="font-bold text-1x1"> <strong> Album </strong>
+                        {{$song->album->name}} </h3>
                         {{ $song->song_description }} <br>
                         {{$song->song_length}} <br>
                         @if ($song->song_image)

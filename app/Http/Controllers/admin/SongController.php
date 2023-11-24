@@ -93,6 +93,7 @@ class SongController extends Controller
             'song_description' =>'required | max:200',
             'song_length' => 'required | regex:/(\d+\:\d+)/',
             'song_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'album_id' =>'required',
         ]);
         
 
@@ -109,7 +110,8 @@ class SongController extends Controller
             'song_name' => $request->song_name,
             'song_description' => $request->song_description,
             'song_length' => $request->song_length,
-            'song_image' => $song_image_name
+            'song_image' => $song_image_name,
+            'album_id' =>$request->album_id,
         ]);
 
         //This reroutes to index after the book is created and calls the alert success component, inside the slot will be the message.
@@ -134,8 +136,10 @@ class SongController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
+        $albums = Album::all();
         //Edit Specific Song: , go to song edit with the song index that is clicked on ex: songs/edit/1
-        return view('admin.songs.edit')->with('song',$song);
+        // return view('admin.songs.edit')->with('song',$song);
+        return view('admin.songs.edit',compact('song','albums'));
     }
 
     /**

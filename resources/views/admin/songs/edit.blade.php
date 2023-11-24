@@ -62,6 +62,10 @@
                         :value="old('song_image', $song->song_image)">
                     </x-song-cover>
 
+                    <!-- <div class="mt-6">
+                        <x-select-album name="album_id" :albums="$albums" :selected="old('album_id')"/>
+                    </div> -->
+
 
                     <img src="{{asset($song->song_image)}}" alt="{{ $song->song_name }}" width="100">
 
