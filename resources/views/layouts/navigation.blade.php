@@ -42,12 +42,12 @@
                 </div>       
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
-                        <x-nav-link :href="route('admin.album.index')" :active="request()->routeIs('admin.songs.index')">
-                            {{ __('album') }}
+                        <x-nav-link :href="route('admin.albums.index')" :active="request()->routeIs('admin.songs.index')">
+                            {{ __('Albums') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
-                        <x-nav-link :href="route('user.album.index')" :active="request()->routeIs('user.songs.index')">
-                            {{ __('album') }}
+                        <x-nav-link :href="route('user.albums.index')" :active="request()->routeIs('user.songs.index')">
+                            {{ __('Albums') }}
                         </x-nav-link>
                     @endif
                 </div>                      
