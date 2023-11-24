@@ -105,7 +105,7 @@ class AlbumController extends Controller
     public function update(Request $request, Album $album)
     {
         //
-        user = Auth::user();
+        $user = Auth::user();
         $user->authorizeRoles('admin');
         //same validation as create function
         $request->validate([

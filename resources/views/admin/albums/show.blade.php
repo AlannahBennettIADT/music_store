@@ -25,6 +25,10 @@
             <p>No Songs for this Album </p>
 
             @endforelse
+
+            <!-- Added Edit and Delete buttons, routing to specific functions in album controller-->
+            <x-primary-button><a href="{{ route('admin.albums.edit',$album) }}"> Edit</a></x-primary-button>
+            <x-delete-button :route="route('admin.albums.destroy', $album)" text="Delete Album" />
             
         </div>
     </div>
