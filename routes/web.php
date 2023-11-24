@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\SongController as AdminSongController;
 use App\Http\Controllers\user\SongController as UserSongController;
 
+use App\Http\Controllers\admin\AlbumController as AdminAlbumController;
+use App\Http\Controllers\user\AlbumController as UserAlbumController;
+
+
 
 
 /*
@@ -46,8 +50,17 @@ Route::middleware('auth')->group(function () {
 
 //CRUD functionality with user and admin
 
+//Song Controller
 Route::resource('admin/songs',AdminSongController::class)->names('admin.songs');
 Route::resource('user/songs',UserSongController::class)->middleware(['auth'])->names('user.songs')->only(['index','show']);
+
+//Album Controller
+Route::resource('admin/albums',AdminAlbumController::class)->names('admin.albums');
+Route::resource('user/albums',UserAlbumController::class)->middleware(['auth'])->names('user.albums')->only(['index','show']);
+
+
+
+
 
 //debugging login error
 
