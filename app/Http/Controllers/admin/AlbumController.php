@@ -96,7 +96,7 @@ class AlbumController extends Controller
         $user->authorizeRoles('admin');
         //Edit Specific Song: , go to song edit with the song index that is clicked on ex: songs/edit/1
         // return view('admin.songs.edit')->with('song',$song);
-        return view('admin.albums.edit');
+        return view('admin.albums.edit')->with('album',$album);
     }
 
     /**
@@ -124,7 +124,7 @@ class AlbumController extends Controller
         ]);
 
         //This reroutes to index after the book is created and calls the alert success component, inside the slot will be the message.
-        return to_route('admin.albums.index')->with('success','Album Updated successfully');
+        return to_route('admin.albums.index',$album)->with('success','Album Updated successfully');
     }
 
     /**
