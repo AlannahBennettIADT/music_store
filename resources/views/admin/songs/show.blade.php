@@ -40,8 +40,8 @@
                             </tr>
 
                             <tr>
-                                <td class="font-bold ">Song Album id </td>
-                                <td>{{ $song->album_id }}</td>
+                                <td class="font-bold ">Album Name </td>
+                                <td>{{ $song->album->name}}</td>
                             </tr>
 
                             

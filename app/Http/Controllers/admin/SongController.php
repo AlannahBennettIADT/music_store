@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Song;
+use App\Models\Album;
 
 class SongController extends Controller
 {
@@ -52,6 +53,8 @@ class SongController extends Controller
 
         // Use pagination with a default number of items per page (10)
         $songs = $query->paginate(10);
+
+        // $songs = Song::with('album')->get();
     
         return view('admin.songs.index', compact('songs'));
     }
@@ -68,8 +71,9 @@ class SongController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
+        $albums = Album::all();
         //returns create view
-        return view('admin.songs.create');
+        return view('admin.songs.create')->with('albums',$albums);
     }
 
     /**

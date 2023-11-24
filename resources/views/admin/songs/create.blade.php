@@ -55,6 +55,10 @@
                         :value="old('song_image')">>
                     </x-song-cover>
 
+                    <div class="mt-6">
+                        <x-select-album name="album_id" :albums="$albums" :selected="old('album_id')"/>
+                    </div>
+
                     <x-primary-button class="mt-6">Save Song</x-primary-button>
                 </form>
             </div>
