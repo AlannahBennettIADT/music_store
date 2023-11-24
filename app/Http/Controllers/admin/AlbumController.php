@@ -44,9 +44,19 @@ class AlbumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Album $album)
     {
         //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        if(!Auth::id()){
+            return abort(403);
+        }
+
+        $songs = $album->songs;
+
+        return view('admin.albums.show',compact('album','songs'));
     }
 
     /**

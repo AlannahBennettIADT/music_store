@@ -15,13 +15,13 @@
             </x-alert-success>
         
             <x-primary-button>
-                <a href="{{ route('admin.albums.create') }}">Add a Album</a>
+                <a href="{{ route('user.albums.create') }}">Add a Album</a>
             </x-primary-button>
 
             @forelse ($albums as $album)
                 <x-card>
                   
-                        <a href="{{ route('admin.albums.show', $album) }}" class="font-bold text-2xl">{{ $album->name }}</a>
+                        <a href="{{ route('user.albums.show', $album) }}" class="font-bold text-2xl">{{ $album->name }}</a>
             
                         <p class="mt-2 text-gray-700">
                             <span class="font-bold">ID:</span> {{ $album->id }}
