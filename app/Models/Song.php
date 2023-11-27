@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Album;
+use App\Models\Artist;
 
 
 
@@ -28,5 +29,10 @@ class Song extends Model
     public function album()
     {
         return $this->belongsTo(Album::class);
+    }
+
+    public function artists()
+    {
+        return $this->belongsToMany(Artist::class)->withTimestamps();
     }
 }
