@@ -13,6 +13,11 @@ class ArtistController extends Controller
     public function index()
     {
         //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $songs = $artist->songs;
+        return view ('admin.artists.show',compact('artist', 'songs'));
     }
 
     /**

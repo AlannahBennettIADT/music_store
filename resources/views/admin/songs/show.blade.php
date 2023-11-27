@@ -50,7 +50,7 @@
                                 <td class="font-bold">Artists</td>
                                 <td>
                                     @foreach ($song->artists as $artist)
-                                        <p>{{ $artist->artist_name }}</p>
+                                    <a href="{{ route('admin.artists.show', $artist) }}" ><p>{{ $artist->artist_name }}</p>
                                     @endforeach
                                 </td>
                             </tr>

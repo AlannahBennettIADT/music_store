@@ -21,8 +21,9 @@
                         <tbody>
                           <tr>
                             <td rowspan="6">
+                                
                             <!-- Switched the display of image-->
-                            <!-- <img src="{{asset('storage/images/' . $song->song_image)}}" width="150" /> -->
+                            <img src="{{asset($song->song_image)}}" width="150" /> 
                             </td>
                             </tr>
                             <tr>
@@ -31,7 +32,7 @@
                             </tr>
                            
                             <tr>
-                                <td class="font-bold">Song description </td>
+                                <td class="font-bold">Song Description </td>
                                 <td>{{ $song->song_description }}</td>
                             </tr>
                             <tr>
@@ -43,19 +44,21 @@
                                 <td class="font-bold ">Album Name </td>
                                 <td>{{ $song->album->name}}</td>
                             </tr>
-
+                            
+                            
                             <tr>
-                                <td class="font-bold ">Cover Image </td>
-                                <!-- use the asset function, access the file $book->book_image in the folder storage/images -->
-                                <td><img src="{{asset($song->song_image)}}" 
-                                    alt="{{ $song->song_name }}" width="100"></td>
+                                <td class="font-bold">Artists</td>
+                                <td>
+                                    @foreach ($song->artists as $artist)
+                                    <a href="{{ route('user.artists.show', $artist) }}" ><p>{{ $artist->artist_name }}</p>
+                                    @endforeach
+                                </td>
                             </tr>
+
+
                         </tbody>
                     </table>
                     
-                    <!-- Added Edit and Delete buttons, routing to specific functions in song controller-->
-                    <!-- <x-primary-button><a href="{{ route('user.songs.edit',$song) }}"> Edit</a></x-primary-button>
-                    <x-delete-button :route="route('user.songs.destroy', $song)" text="Delete Song" /> -->
 
                 </div>
             </div>
