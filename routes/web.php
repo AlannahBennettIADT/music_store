@@ -15,6 +15,9 @@ use App\Http\Controllers\admin\AlbumController as AdminAlbumController;
 use App\Http\Controllers\user\AlbumController as UserAlbumController;
 
 
+use App\Http\Controllers\admin\ArtistController as AdminArtistController;
+use App\Http\Controllers\user\ArtistController as UserArtistController;
+
 
 
 /*
@@ -58,6 +61,9 @@ Route::resource('user/songs',UserSongController::class)->middleware(['auth'])->n
 Route::resource('admin/albums',AdminAlbumController::class)->names('admin.albums');
 Route::resource('user/albums',UserAlbumController::class)->middleware(['auth'])->names('user.albums')->only(['index','show']);
 
+//Artist Controller
+Route::resource('/admin/artists', AdminArtistController::class)->middleware(['auth'])->names('admin.artists');
+Route::resource('/user/artists', UserArtistController::class)->middleware(['auth'])->names('user.artists')->only(['index', 'show']);
 
 
 
