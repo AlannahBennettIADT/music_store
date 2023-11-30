@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Song;
 use App\Models\Album;
+use App\Models\Artist;
 
 class SongController extends Controller
 {
@@ -72,8 +73,9 @@ class SongController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
         $albums = Album::all();
+        $artists = Artist::all();
         //returns create view
-        return view('admin.songs.create')->with('albums',$albums);
+        return view('admin.songs.create')->with('albums',$albums)->with('artists',$artists);
     }
 
     /**
@@ -94,6 +96,7 @@ class SongController extends Controller
             'song_length' => 'required | regex:/(\d+\:\d+)/',
             'song_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'album_id' =>'required',
+            'artists' =>['required','exists:artists,id']
         ]);
         
 
@@ -113,6 +116,8 @@ class SongController extends Controller
             'song_image' => $song_image_name,
             'album_id' =>$request->album_id,
         ]);
+
+        $song->artists()->attach($request->artists);
 
         //This reroutes to index after the book is created and calls the alert success component, inside the slot will be the message.
         return to_route('admin.songs.index')->with('success','Song created successfully');

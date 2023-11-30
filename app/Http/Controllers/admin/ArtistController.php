@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin;
-
+namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Song;
+use App\Models\Album;
+use App\Models\Artist;
 
 class ArtistController extends Controller
 {
@@ -12,12 +16,14 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        //
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
+    
+        // Retrieve the artist instance (replace ArtistModel with your actual model name)
+        $artist = ArtistModel::first();
+    
         $songs = $artist->songs;
-        return view ('admin.artists.show',compact('artist', 'songs'));
+        return view('admin.artists.show', compact('artist', 'songs'));
     }
 
     /**
@@ -39,9 +45,15 @@ class ArtistController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Artist $artist)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+    
+        // No need to retrieve $artist, as Laravel will automatically inject it based on the route parameter
+    
+        $songs = $artist->songs;
+        return view('admin.artists.show', compact('artist', 'songs'));
     }
 
     /**
