@@ -3,7 +3,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Song') }}
+            {{ __('Edit Artist') }}
         </h2>
     </x-slot>
 
@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <!-- routing to update function in songs -->
-                <form action="{{ route('admin.songs.update',$song) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.artists.update',$artist) }}" method="post" enctype="multipart/form-data">
 
                      <!-- laravel hidden method, adds input field which laravel changes method to put instead of post -->
                     @method('put')
@@ -22,54 +22,56 @@
 
                     <x-text-input
                         type="text"
-                        name="song_name"
-                        field="song_name"
+                        name="artist_name"
+                        field="artist_name"
                         placeholder="Song Name"
                         class="w-full"
                         autocomplete="off"
-                        :value="@old('song_name',$song->song_name)">
+                        :value="@old('artist_name',$artist->artist_name)">
                     </x-text-input>
 
                     <x-text-input
-                        type="time"
-                        name="song_length"
-                        field="song_length"
-                        placeholder="Song Length..."
+                        type="text"
+                        name="management"
+                        field="management"
+                        placeholder="Management"
                         class="w-full mt-6"
-                        :value="@old('song_length',$song->song_length)">
+                        :value="@old('management',$artist->management)">
                     </x-text-input>
 
-                    <!-- I created a new component called textarea, you will need to do the same to using the x-textarea component -->
-                    <!-- Added type = "text" -->
-                    <x-textarea
+                    <x-text-input
                         type="text"
-                        name="song_description"
-                        rows="10"
-                        field="song_description"
-                        placeholder="song description..."
+                        name="monthly_listeners"
+                        field="monthly_listeners"
+                        placeholder="monthly_listeners"
                         class="w-full mt-6"
-                        :value="@old('song_description',$song->song_description)">
-                    </x-textarea>
+                        :value="@old('monthly_listeners',$artist->monthly_listeners)">
+                    </x-text-input>
+                    <x-text-input
+                        type="text"
+                        name="country"
+                        field="country"
+                        placeholder="country"
+                        class="w-full mt-6"
+                        :value="@old('country',$artist->country)">
+                    </x-text-input>
 
 
                     <!-- Created file input component -->
                     <x-song-cover
                         type="file"
-                        name="song_image" 
+                        name="artist_image" 
                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                         placeholder="Song Image"
-                        field="song_image"
-                        :value="old('song_image', $song->song_image)">
+                        field="artist_image"
+                        :value="old('artist_image', $artist->artist_image)">
                     </x-song-cover>
 
-                    <!-- <div class="mt-6">
-                        <x-select-album name="album_id" :albums="$albums" :selected="old('album_id')"/>
-                    </div> -->
 
 
-                    <img src="{{asset($song->song_image)}}" alt="{{ $song->song_name }}" width="100">
+                    <img src="{{asset($artist->artist_image)}}" alt="{{ $artist->song_name }}" width="100">
 
-                    <x-primary-button class="mt-6">Save Song</x-primary-button>
+                    <x-primary-button class="mt-6">Save Artist</x-primary-button>
                 </form>
             </div>
         </div>
