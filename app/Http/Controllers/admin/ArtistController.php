@@ -49,17 +49,26 @@ class ArtistController extends Controller
         //used laravel documentation for validation to add restrictions to the data that is allowed to be submitted
         $request->validate([
             'artist_name' => 'required | min:5 | max:50',
-            'description' =>'required | max:200',
-            'length' => 'required',
-            'type' => 'required',
+            'management' =>'required | max:200',
+            'monthly_listeners' => 'required',
+            'country' => 'required',
+            'artist_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if($request->hasFile('artist_image')){
+            $image =$request->file('artist_image');
+            $imageName = time() . '.'.$image->extension();
+            $image->storeAs('public/artists',$imageName);
+            $artist_image_name = 'storage/artists/' . $imageName;
+        }
         
         //Creation of another Song Object/Model
         Artist::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'length' => $request->length,
-            'type' =>$request->type,
+            'artist_name' => $request->artist_name,
+            'management' => $request->management,
+            'monthly_listeners' => $request->monthly_listeners,
+            'country' => $request->country,
+            'artist_image' => $artist_image_name,
         ]);
 
         //This reroutes to index after the book is created and calls the alert success component, inside the slot will be the message.

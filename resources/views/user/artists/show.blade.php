@@ -26,16 +26,13 @@
 
             @forelse ($songs as $song)
                 <x-card>
-                     <a href="{{ route('admin.songs.show', $song) }}" class="font-bold text-2xl">{{ $song->song_name }}</a>
+                     <a href="{{ route('user.songs.show', $song) }}" class="font-bold text-2xl">{{ $song->song_name }}</a>
                     
                 </x-card>
             @empty
                 <p>No songs for this artist</p>
             @endforelse
 
-            <x-primary-button><a href="{{ route('admin.artists.edit',$artist) }}"> Edit</a></x-primary-button>
-            <x-delete-button :route="route('admin.artists.destroy', $artist)" text="Delete Artist" />
-            
         </div>
     </div>
 </x-app-layout>

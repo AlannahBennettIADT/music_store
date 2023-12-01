@@ -13,15 +13,12 @@
             <x-alert-success>
                 {{ session('success') }}
             </x-alert-success>
-        
-            <x-primary-button>
-                <a href="{{ route('admin.artists.create') }}">Add a Artist</a>
-            </x-primary-button>
+
 
             @forelse ($artists as $artist)
                 <x-card>
                   
-                        <a href="{{ route('admin.artists.show', $artist) }}" class="font-bold text-2xl">{{ $artist->artist_name }}</a>
+                        <a href="{{ route('user.artists.show', $artist) }}" class="font-bold text-2xl">{{ $artist->artist_name }}</a>
             
                         <p class="mt-2 text-gray-700">
                             <span class="font-bold">ID:</span> {{ $artist->id }}

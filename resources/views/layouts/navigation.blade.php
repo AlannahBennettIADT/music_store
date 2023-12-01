@@ -17,6 +17,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
                         <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
@@ -26,43 +28,40 @@
                         <x-nav-link :href="route('user.songs.index')" :active="request()->routeIs('user.songs.index')">
                             {{ __('All songs') }}
                         </x-nav-link>
-                    @else
-                        <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
-                            {{ __('All songs') }}
-                        </x-nav-link>
                     @endif
                 </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
                         <x-nav-link :href="route('admin.songs.create')" :active="request()->routeIs('admin.songs.create')">
                             {{ __('Create Song') }}
                         </x-nav-link>
-                  
                     @endif
-                </div>       
+                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
-                        <x-nav-link :href="route('admin.albums.index')" :active="request()->routeIs('admin.songs.index')">
+                        <x-nav-link :href="route('admin.albums.index')" :active="request()->routeIs('admin.albums.index')">
                             {{ __('Albums') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
-                        <x-nav-link :href="route('user.albums.index')" :active="request()->routeIs('user.songs.index')">
+                        <x-nav-link :href="route('user.albums.index')" :active="request()->routeIs('user.albums.index')">
                             {{ __('Albums') }}
                         </x-nav-link>
                     @endif
-                </div>        
-                
+                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
-                        <x-nav-link :href="route('admin.artists.index')" :active="request()->routeIs('admin.songs.index')">
+                        <x-nav-link :href="route('admin.artists.index')" :active="request()->routeIs('admin.artists.index')">
                             {{ __('Artists') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
-                        <x-nav-link :href="route('user.artists.index')" :active="request()->routeIs('user.songs.index')">
+                        <x-nav-link :href="route('user.artists.index')" :active="request()->routeIs('user.artists.index')">
                             {{ __('Artists') }}
                         </x-nav-link>
                     @endif
-                </div> 
+                </div>
           
 
             <!-- Settings Dropdown -->

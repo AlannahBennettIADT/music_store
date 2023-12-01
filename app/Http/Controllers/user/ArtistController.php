@@ -12,54 +12,27 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+        
+        $artists = Artist::all();
+        return view('user.artists.index')->with('artists',$artists);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Artist $artist)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+    
+        // No need to retrieve $artist, as Laravel will automatically inject it based on the route parameter
+    
+        $songs = $artist->songs;
+        return view('user.artists.show', compact('artist', 'songs'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
