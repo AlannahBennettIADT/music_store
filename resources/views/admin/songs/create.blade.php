@@ -56,14 +56,16 @@
                     </x-song-cover>
 
                     <div class="mt-6">
+                    <label for="album_id"> <strong>Album</strong> <br> </label>
                         <x-select-album name="album_id" :albums="$albums" :selected="old('album_id')"/>
                     </div>
 
                     <div class="form-group">
+                        <br>
                         <label for="artists"> <strong>Artists</strong> <br> </label>
                         @foreach($artists as $artist)
-                        <input type="checkbox",value="{{$artist->id}}" name="artists[]">
-                        {{$artist->name}}
+                            <input type="checkbox" value="{{$artist->id}}" name="artists[]">
+                            {{$artist->artist_name}}
                         @endforeach
                     </div>
 

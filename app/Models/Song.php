@@ -23,7 +23,7 @@ class Song extends Model
         'song_length',
         'song_description',
         'song_image',
-        'album_id'
+        'album_id',
     ];
 
     public function album()

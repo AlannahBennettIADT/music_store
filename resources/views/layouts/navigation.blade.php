@@ -50,7 +50,19 @@
                             {{ __('Albums') }}
                         </x-nav-link>
                     @endif
-                </div>                      
+                </div>        
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if(auth()->user()->hasRole('admin'))
+                        <x-nav-link :href="route('admin.artists.index')" :active="request()->routeIs('admin.songs.index')">
+                            {{ __('Artists') }}
+                        </x-nav-link>
+                    @elseif(auth()->user()->hasRole('user'))
+                        <x-nav-link :href="route('user.artists.index')" :active="request()->routeIs('user.songs.index')">
+                            {{ __('Artists') }}
+                        </x-nav-link>
+                    @endif
+                </div> 
           
 
             <!-- Settings Dropdown -->

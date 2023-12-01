@@ -83,6 +83,8 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->all());
         $user = Auth::user();
         $user->authorizeRoles('admin');
         //Create wasn't working so I bug tested to see how far into the function the program gets:
@@ -109,12 +111,13 @@ class SongController extends Controller
         }
 
         //Creation of another Song Object/Model
-        Song::create([
+        $song = Song::create([
             'song_name' => $request->song_name,
             'song_description' => $request->song_description,
             'song_length' => $request->song_length,
             'song_image' => $song_image_name,
             'album_id' =>$request->album_id,
+            // 'artists' =>$request->artists,
         ]);
 
         $song->artists()->attach($request->artists);

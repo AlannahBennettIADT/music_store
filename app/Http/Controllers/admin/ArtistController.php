@@ -18,12 +18,9 @@ class ArtistController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-    
-        // Retrieve the artist instance (replace ArtistModel with your actual model name)
-        $artist = ArtistModel::first();
-    
-        $songs = $artist->songs;
-        return view('admin.artists.show', compact('artist', 'songs'));
+        
+        $artists = Artist::all();
+        return view('admin.artists.index')->with('artists',$artists);
     }
 
     /**
@@ -32,6 +29,11 @@ class ArtistController extends Controller
     public function create()
     {
         //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        //returns create view
+        return view('admin.artists.create');
     }
 
     /**
@@ -40,6 +42,28 @@ class ArtistController extends Controller
     public function store(Request $request)
     {
         //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+
+        //used laravel documentation for validation to add restrictions to the data that is allowed to be submitted
+        $request->validate([
+            'artist_name' => 'required | min:5 | max:50',
+            'description' =>'required | max:200',
+            'length' => 'required',
+            'type' => 'required',
+        ]);
+        
+        //Creation of another Song Object/Model
+        Artist::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'length' => $request->length,
+            'type' =>$request->type,
+        ]);
+
+        //This reroutes to index after the book is created and calls the alert success component, inside the slot will be the message.
+        return to_route('admin.artists.index')->with('success','Album created successfully');
     }
 
     /**
