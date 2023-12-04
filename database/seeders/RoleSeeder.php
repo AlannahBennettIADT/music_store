@@ -25,5 +25,10 @@ class RoleSeeder extends Seeder
         $role_user->description = 'An Ordinary User';
         $role_user->save();
 
+        $editor_user = new Role();
+        $editor_user->name= 'editor';
+        $editor_user->description = 'An Editor User';
+        $editor_user->save();
+
     }
 }

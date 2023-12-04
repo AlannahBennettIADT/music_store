@@ -40,5 +40,14 @@ class UserSeeder extends Seeder
         $user->roles()->attach($role_user);
 
 
+        $editor_user = new User();
+        $editor_user->name = 'Alannah Editor';
+        $editor_user->email = 'editor@gmail.com';
+        $editor_user->password = Hash::make('password'); 
+        $editor_user->save();
+
+        $user->roles()->attach($editor_user);
+
+
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('All Albums') }}
+            {{ __('All Artists') }}
         </h2>
     </x-slot>
 
@@ -15,25 +15,23 @@
             </x-alert-success>
         
 
-
-            @forelse ($albums as $album)
+            @forelse ($artists as $artist)
                 <x-card>
                   
-                        <a href="{{ route('user.albums.show', $album) }}" class="font-bold text-2xl">{{ $album->name }}</a>
+                        <a href="{{ route('editor.artists.show', $artist) }}" class="font-bold text-2xl">{{ $artist->artist_name }}</a>
             
                         <p class="mt-2 text-gray-700">
-                            <span class="font-bold">ID:</span> {{ $album->id }}
+                            <span class="font-bold">ID:</span> {{ $artist->id }}
                         </p>
                         <p class="mt-2 text-gray-700">
-                            <span class="font-bold">Name:</span> {{ $album->name }}
+                            <span class="font-bold">Listeners:</span> {{ $artist->monthly_listeners }}
                         </p>
                         <p class="mt-2 text-gray-700">
-                            <span class="font-bold">Length:</span> {{ $album->length }}
+                            <span class="font-bold">Management:</span> {{ $artist->management }}
                         </p>
-            
                 </x-card>   
             @empty
-                <p>No albums</p>
+                <p>No artists</p>
             @endforelse
             
         </div>

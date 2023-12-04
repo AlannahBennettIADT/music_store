@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Album;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller

@@ -17,7 +17,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                
+
+
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
@@ -28,16 +29,24 @@
                         <x-nav-link :href="route('user.songs.index')" :active="request()->routeIs('user.songs.index')">
                             {{ __('All songs') }}
                         </x-nav-link>
+                    @elseif(auth()->user()->hasRole('editor'))
+                        <x-nav-link :href="route('editor.songs.index')" :active="request()->routeIs('editor.songs.index')">
+                            {{ __('All songs') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link href="#" :active="false">
+                            {{ __('No role matched - Roles: ' . implode(', ', auth()->user()->roles->pluck('name')->toArray())) }}
+                        </x-nav-link>
                     @endif
                 </div>
-
+<!-- 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
                         <x-nav-link :href="route('admin.songs.create')" :active="request()->routeIs('admin.songs.create')">
                             {{ __('Create Song') }}
                         </x-nav-link>
                     @endif
-                </div>
+                </div> -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
@@ -46,6 +55,11 @@
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
                         <x-nav-link :href="route('user.albums.index')" :active="request()->routeIs('user.albums.index')">
+                            {{ __('Albums') }}
+                        </x-nav-link>
+
+                    @elseif(auth()->user()->hasRole('editor'))
+                        <x-nav-link :href="route('editor.albums.index')" :active="request()->routeIs('editor.albums.index')">
                             {{ __('Albums') }}
                         </x-nav-link>
                     @endif
@@ -58,6 +72,11 @@
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
                         <x-nav-link :href="route('user.artists.index')" :active="request()->routeIs('user.artists.index')">
+                            {{ __('Artists') }}
+                        </x-nav-link>
+
+                    @elseif(auth()->user()->hasRole('editor'))
+                        <x-nav-link :href="route('editor.artists.index')" :active="request()->routeIs('editor.artists.index')">
                             {{ __('Artists') }}
                         </x-nav-link>
                     @endif

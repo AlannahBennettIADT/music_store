@@ -19,7 +19,7 @@
             @forelse ($albums as $album)
                 <x-card>
                   
-                        <a href="{{ route('user.albums.show', $album) }}" class="font-bold text-2xl">{{ $album->name }}</a>
+                        <a href="{{ route('editor.albums.show', $album) }}" class="font-bold text-2xl">{{ $album->name }}</a>
             
                         <p class="mt-2 text-gray-700">
                             <span class="font-bold">ID:</span> {{ $album->id }}

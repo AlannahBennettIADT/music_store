@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artist; // Assuming your Artist model is in the 'App\Models' namespace
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ArtistController extends Controller
