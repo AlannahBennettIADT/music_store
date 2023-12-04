@@ -49,7 +49,7 @@
             </form>  -->
 
 
-            <form action="{{ auth()->user()->hasRole('admin') ? route('admin.songs.index') : route('user.songs.index') }}" method="get">
+            <!-- <form action="{{ auth()->user()->hasRole('admin') ? route('admin.songs.index') : route('user.songs.index') }}" method="get">
             <label for="sort_order" class="inline-flex items-center font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
                 Sort by Song Name:
             </label>
@@ -58,7 +58,43 @@
                 <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
             </select>
             <input type="submit" class="sort-button" value="Sort">
-        </form>
+        </form> -->
+
+            <!-- Sort Form -->
+            <form action="{{ 
+                auth()->user()->hasRole('admin') ? route('admin.songs.index') : 
+                (auth()->user()->hasRole('editor') ? route('editor.songs.index') : 
+                route('user.songs.index'))
+            }}" method="get">
+                <label for="sort_order" class="inline-flex items-center font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+                    Sort by Song Name:
+                </label>
+                <select name="sort_order" id="sort_order">
+                    <option value="asc" @if(request('sort_order') == 'asc') selected @endif>Ascending</option>
+                    <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
+                </select>
+
+                <button type="submit" class="sort-button">Sort</button>
+            </form>
+
+            <div style="margin-left: 50px;"></div>
+
+            <!-- Search Form -->
+            <form action="{{ 
+                auth()->user()->hasRole('admin') ? route('admin.songs.index') : 
+                (auth()->user()->hasRole('editor') ? route('editor.songs.index') : 
+                route('user.songs.index'))
+            }}" method="get">
+                <label for="search" class="inline-flex items-center font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+                    Search Song:
+                </label>
+                <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Search songs">
+
+                <button type="submit" class="sort-button">Search</button>
+            </form>
+
+
+
 
         </div>
   
