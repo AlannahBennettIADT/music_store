@@ -1,4 +1,4 @@
-<!-- Index Page View-->
+<!-- User Index Page View-->
 
 <x-app-layout>
     <x-slot name="header">

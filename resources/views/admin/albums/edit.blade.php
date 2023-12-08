@@ -1,4 +1,4 @@
-<!-- Edit Album View -->
+<!-- Edit Admin Album View -->
 
 <x-app-layout>
     <x-slot name="header">

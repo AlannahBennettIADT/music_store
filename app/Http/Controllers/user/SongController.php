@@ -1,8 +1,9 @@
 <?php
-/* Song Controller:
+/* Album User Controller:
 - Made Specific resource controller, comes with CRUD boilerplate code
 - The controller is the coordinator, listens to what user does and tells the view how to show it, (flow of the application)
 - Most routes lead here, the function tells the program what to do and what view to return
+- The user can only view everything, no edit, create or delete privileges
 */
 
 namespace App\Http\Controllers\User;
@@ -38,13 +39,19 @@ class SongController extends Controller
 
         $query = Song::query();
     
-        // Check if a filter is applied
+        // Check which form is submitted
         if ($request->has('sort_order')) {
             // If the 'sort_order' parameter is present in the request, use it for sorting
             $sortOrder = $request->input('sort_order');
             $query->orderBy('song_name', $sortOrder);
-        } else {
-            // doesn't automatically sort 
+        } elseif ($request->has('search')) {
+            // Check if a search term is provided
+            $searchTerm = $request->input('search');
+            $query->whereHas('artists', function ($query) use ($searchTerm) {
+                $query->where('artist_name', 'like', '%' . $searchTerm . '%');
+            });
+        }else {
+            // Default sorting if no form is submitted
             $query->orderBy('id', 'asc');
         }
     

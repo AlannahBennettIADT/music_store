@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //creating pivot table
         Schema::create('artist_song', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('artist_id');
             $table->unsignedBigInteger('song_id');
             $table->timestamps();
-
+            
+            //adding two foreign keys
             $table->foreign('artist_id')->references('id')->on('artists')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('song_id')->references('id')->on('songs')->onUpdate('cascade')->onDelete('restrict');
         });

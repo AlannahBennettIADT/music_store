@@ -1,4 +1,9 @@
 <?php
+/* Artist Seeder:
+	- Responsible for filling database with predefined data
+	- Filled with specific records that application needs to function correctly
+    - Ensures required data is available at the start
+*/
 
 namespace Database\Seeders;
 
@@ -17,10 +22,13 @@ class ArtistSeeder extends Seeder
 
     public function run(): void
     {
+        //how many times to create an artist
         Artist::factory()
         ->times(3)
         ->create();
 
+
+        //for every artist, attatch an artist id to each song
         
         foreach(Song::all() as $song)
         {

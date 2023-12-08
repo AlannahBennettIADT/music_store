@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //using songs table schema
         Schema::table('songs', function (Blueprint $table) {
             $table->unsignedBigInteger('album_id');
+            //making foreign key linking from albums table
             $table->foreign('album_id')->references('id')->on('albums')->onUpdate('cascade')->onDelete('restrict');
         });
     }

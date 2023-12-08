@@ -1,4 +1,4 @@
-<!-- Create Artist View-->
+<!-- Create Admin Artist View-->
 
 
 <x-app-layout>

@@ -1,4 +1,4 @@
-<!-- Index Page View-->
+<!-- Index Admin Page View-->
 
 <x-app-layout>
     <x-slot name="header">
@@ -34,31 +34,6 @@
             if request is a Blade template directive that starts an "if" statement. It checks if the value of the 'sort_order' 
             -->
 
-            <!-- 
-                OLD - BEFORE USER AUTHENTICATION
-                
-            
-            <form action="{{ url('/songs') }}" method="get">
-                <label for="sort_order" class="inline-flex items-centerfont-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                    Sort by Song Name:</label>
-                <select name="sort_order" id="sort_order">
-                    <option value="asc" @if(request('sort_order') == 'asc') selected @endif>Ascending</option>
-                    <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
-                </select>
-                <input type="submit" class="sort-button" value="Sort">
-            </form>  -->
-
-
-            <!-- <form action="{{ auth()->user()->hasRole('admin') ? route('admin.songs.index') : route('user.songs.index') }}" method="get">
-            <label for="sort_order" class="inline-flex items-center font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                Sort by Song Name:
-            </label>
-            <select name="sort_order" id="sort_order">
-                <option value="asc" @if(request('sort_order') == 'asc') selected @endif>Ascending</option>
-                <option value="desc" @if(request('sort_order') == 'desc') selected @endif>Descending</option>
-            </select>
-            <input type="submit" class="sort-button" value="Sort">
-        </form> -->
 
             <!-- Sort Form -->
             <form action="{{ 
@@ -86,16 +61,12 @@
                 route('user.songs.index'))
             }}" method="get">
                 <label for="search" class="inline-flex items-center font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                    Search Song:
+                    Search By Artist Name:
                 </label>
                 <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Search songs">
 
                 <button type="submit" class="sort-button">Search</button>
             </form>
-
-
-
-
         </div>
   
 

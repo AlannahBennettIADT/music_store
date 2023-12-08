@@ -1,9 +1,11 @@
 <?php
-/* Song Controller:
+/* Song Editor Controller:
 - Made Specific resource controller, comes with CRUD boilerplate code
 - The controller is the coordinator, listens to what user does and tells the view how to show it, (flow of the application)
 - Most routes lead here, the function tells the program what to do and what view to return
+- The editor can only EDIT not create or delete anything.
 */
+
 
 namespace App\Http\Controllers\editor;
 use App\Http\Controllers\Controller;
@@ -17,30 +19,34 @@ use App\Models\Artist;
 class SongController extends Controller
 {
 
-
-    
     /**
      * Display a listing of all the Songs.
      */
     public function index(Request $request)
     {
+        //authorized to see if current user is editor
         $user = Auth::user();
         $user->authorizeRoles('editor');
 
         $query = Song::query();
     
-        // Check if a filter is applied
+        // Check which form is submitted
         if ($request->has('sort_order')) {
             // If the 'sort_order' parameter is present in the request, use it for sorting
             $sortOrder = $request->input('sort_order');
             $query->orderBy('song_name', $sortOrder);
-        } else {
-            // doesn't automatically sort 
+        } elseif ($request->has('search')) {
+            // Check if a search term is provided
+            $searchTerm = $request->input('search');
+            $query->whereHas('artists', function ($query) use ($searchTerm) {
+                $query->where('artist_name', 'like', '%' . $searchTerm . '%');
+            });
+        }else {
+            // Default sorting if no form is submitted
             $query->orderBy('id', 'asc');
         }
     
         $songs = $query->get();
-
         // Use pagination with a default number of items per page (10)
         $songs = $query->paginate(10);
 
@@ -56,6 +62,7 @@ class SongController extends Controller
 
     public function show(Song $song)
     {
+        //authorized to see if current user is editor
         $user = Auth::user();
         $user->authorizeRoles('editor');
         // returns show view, uses song id 
@@ -67,6 +74,7 @@ class SongController extends Controller
      */
     public function edit(Song $song)
     {
+        //authorized to see if current user is editor
         $user = Auth::user();
         $user->authorizeRoles('editor');
         $albums = Album::all();
@@ -78,8 +86,10 @@ class SongController extends Controller
     /**
      * Update the specified Song in storage.
      */
+    
     public function update(Request $request, Song $song)
     {
+        //authorized to see if current user is editor
         $user = Auth::user();
         $user->authorizeRoles('editor');
         //same validation as create function

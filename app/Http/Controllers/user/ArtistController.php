@@ -7,6 +7,13 @@ use App\Models\Artist; // Assuming your Artist model is in the 'App\Models' name
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+/* Artist User Controller:
+- Made Specific resource controller, comes with CRUD boilerplate code
+- The controller is the coordinator, listens to what user does and tells the view how to show it, (flow of the application)
+- Most routes lead here, the function tells the program what to do and what view to return
+- The user can only view everything, no edit, create or delete privileges
+*/
+
 class ArtistController extends Controller
 {
     /**

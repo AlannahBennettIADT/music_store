@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
@@ -8,6 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Song;
 use App\Models\Album;
 
+
+
+    /* Album Admin Controller:
+    - Made Specific resource controller, comes with CRUD boilerplate code
+    - The controller is the coordinator, listens to what user does and tells the view how to show it, (flow of the application)
+    - Most routes lead here, the function tells the program what to do and what view to return
+    */
 class AlbumController extends Controller
 {
     /**
@@ -15,7 +21,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         
@@ -30,7 +36,7 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -43,7 +49,7 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -73,10 +79,11 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
+        //error message if theres no album with that ID
         if(!Auth::id()){
             return abort(403);
         }
@@ -91,7 +98,7 @@ class AlbumController extends Controller
      */
     public function edit(Album $album)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         //Edit Specific Song: , go to song edit with the song index that is clicked on ex: songs/edit/1
@@ -104,7 +111,7 @@ class AlbumController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         //same validation as create function
@@ -132,7 +139,7 @@ class AlbumController extends Controller
      */
     public function destroy(Album $album)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         // Delete the album

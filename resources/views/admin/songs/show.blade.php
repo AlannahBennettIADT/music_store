@@ -1,4 +1,4 @@
-<!-- Show Song View -->
+<!-- Show Admin Song View -->
 
 <x-app-layout>
     <x-slot name="header">

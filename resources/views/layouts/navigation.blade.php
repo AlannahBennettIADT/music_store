@@ -1,10 +1,10 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-gray-900 border-b border-gray-800">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center text-white">
                     <a href="{{ route('dashboard') }}">
                         <!-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> -->
                         <img src="{{ asset('images/record.png') }}"alt="logo" width="60">
@@ -13,24 +13,24 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-300">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
 
 
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
                     @if(auth()->user()->hasRole('admin'))
-                        <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
+                        <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')" class="text-white hover:text-gray-300">
                             {{ __('All songs') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
-                        <x-nav-link :href="route('user.songs.index')" :active="request()->routeIs('user.songs.index')">
+                        <x-nav-link :href="route('user.songs.index')" :active="request()->routeIs('user.songs.index')" class="text-white hover:text-gray-300">
                             {{ __('All songs') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('editor'))
-                        <x-nav-link :href="route('editor.songs.index')" :active="request()->routeIs('editor.songs.index')">
+                        <x-nav-link :href="route('editor.songs.index')" :active="request()->routeIs('editor.songs.index')" class="text-white hover:text-gray-300">
                             {{ __('All songs') }}
                         </x-nav-link>
                     @else
@@ -47,19 +47,19 @@
                         </x-nav-link>
                     @endif
                 </div> -->
-
+             
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
-                        <x-nav-link :href="route('admin.albums.index')" :active="request()->routeIs('admin.albums.index')">
+                        <x-nav-link :href="route('admin.albums.index')" :active="request()->routeIs('admin.albums.index')"  class="text-white hover:text-gray-300">
                             {{ __('Albums') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
-                        <x-nav-link :href="route('user.albums.index')" :active="request()->routeIs('user.albums.index')">
+                        <x-nav-link :href="route('user.albums.index')" :active="request()->routeIs('user.albums.index')" class="text-white hover:text-gray-300">
                             {{ __('Albums') }}
                         </x-nav-link>
 
                     @elseif(auth()->user()->hasRole('editor'))
-                        <x-nav-link :href="route('editor.albums.index')" :active="request()->routeIs('editor.albums.index')">
+                        <x-nav-link :href="route('editor.albums.index')" :active="request()->routeIs('editor.albums.index')" class="text-white hover:text-gray-300">
                             {{ __('Albums') }}
                         </x-nav-link>
                     @endif
@@ -67,16 +67,16 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
-                        <x-nav-link :href="route('admin.artists.index')" :active="request()->routeIs('admin.artists.index')">
+                        <x-nav-link :href="route('admin.artists.index')" :active="request()->routeIs('admin.artists.index')" class="text-white hover:text-gray-300">
                             {{ __('Artists') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
-                        <x-nav-link :href="route('user.artists.index')" :active="request()->routeIs('user.artists.index')">
+                        <x-nav-link :href="route('user.artists.index')" :active="request()->routeIs('user.artists.index')" class="text-white hover:text-gray-300">
                             {{ __('Artists') }}
                         </x-nav-link>
 
                     @elseif(auth()->user()->hasRole('editor'))
-                        <x-nav-link :href="route('editor.artists.index')" :active="request()->routeIs('editor.artists.index')">
+                        <x-nav-link :href="route('editor.artists.index')" :active="request()->routeIs('editor.artists.index')" class="text-white hover:text-gray-300">
                             {{ __('Artists') }}
                         </x-nav-link>
                     @endif

@@ -1,4 +1,9 @@
 <?php
+/* Artist Factory:
+    -  Used for generating fake data for testing purposes
+	- Makes it easy to populate database with data
+    - Specific to Artist Model
+*/
 
 namespace Database\Factories;
 

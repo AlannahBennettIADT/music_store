@@ -9,13 +9,22 @@ use App\Models\Song;
 use App\Models\Album;
 use App\Models\Artist;
 
+/* Artist Admin Controller:
+- Made Specific resource controller, comes with CRUD boilerplate code
+- The controller is the coordinator, listens to what user does and tells the view how to show it, (flow of the application)
+- Most routes lead here, the function tells the program what to do and what view to return
+*/
+
 class ArtistController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         
@@ -26,9 +35,11 @@ class ArtistController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+
     public function create()
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -39,9 +50,10 @@ class ArtistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -78,8 +90,12 @@ class ArtistController extends Controller
     /**
      * Display the specified resource.
      */
+
+
     public function show(Artist $artist)
     {
+
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
     
@@ -92,9 +108,11 @@ class ArtistController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+
     public function edit(Artist $artist)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         //Edit Specific Song: , go to song edit with the song index that is clicked on ex: songs/edit/1
@@ -105,11 +123,15 @@ class ArtistController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+
     public function update(Request $request, Artist $artist)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
+
+
         //same validation as create function
         $request->validate([
             'artist_name' => 'required | min:5 | max:50',
@@ -120,7 +142,6 @@ class ArtistController extends Controller
         ]);
         
 
-        
         if($request->hasFile('artist_image')){
             $image =$request->file('artist_image');
             $imageName = time() . '.'.$image->extension();
@@ -146,9 +167,10 @@ class ArtistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(Artist $artist)
     {
-        //
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         // Delete the album

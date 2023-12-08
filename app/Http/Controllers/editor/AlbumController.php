@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Song;
 use App\Models\Album;
 
+/* Album Editor Controller:
+- Made Specific resource controller, comes with CRUD boilerplate code
+- The controller is the coordinator, listens to what user does and tells the view how to show it, (flow of the application)
+- Most routes lead here, the function tells the program what to do and what view to return
+- The editor can only EDIT not create or delete anything.
+*/
+
 class AlbumController extends Controller
 {
     /**
@@ -15,7 +22,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+           //authorized to see if current user is editor
         $user = Auth::user();
         $user->authorizeRoles('editor');
         
@@ -30,7 +37,7 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
-        //
+        //authorized to see if current user is editor
         $user = Auth::user();
         $user->authorizeRoles('editor');
 
@@ -48,7 +55,7 @@ class AlbumController extends Controller
      */
     public function edit(Album $album)
     {
-        //
+        //authorized to see if current user is editor
         $user = Auth::user();
         $user->authorizeRoles('editor');
         //Edit Specific Song: , go to song edit with the song index that is clicked on ex: songs/edit/1
@@ -61,7 +68,7 @@ class AlbumController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        //
+        //authorized to see if current user is editor
         $user = Auth::user();
         $user->authorizeRoles('editor');
         //same validation as create function

@@ -35,6 +35,8 @@ class SongController extends Controller
      */
     public function index(Request $request)
     {
+
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -76,6 +78,7 @@ class SongController extends Controller
 
     public function create()
     {
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         $albums = Album::all();
@@ -90,9 +93,12 @@ class SongController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
+        //  debugging code: dd($request->all());
+
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
+
         //Create wasn't working so I bug tested to see how far into the function the program gets:
         // testing to see if it goes into the store function - it does
         // return to_route('songs.index');
@@ -135,8 +141,11 @@ class SongController extends Controller
     /**
      * Display the specified Song.
      */
+
+
     public function show(Song $song)
     {
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         // returns show view, uses song id 
@@ -146,8 +155,12 @@ class SongController extends Controller
     /**
      * Show the form for editing the specified Song.
      */
+
+
     public function edit(Song $song)
     {
+
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         $albums = Album::all();
@@ -159,8 +172,12 @@ class SongController extends Controller
     /**
      * Update the specified Song in storage.
      */
+
+
     public function update(Request $request, Song $song)
     {
+
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         //same validation as create function
@@ -196,8 +213,12 @@ class SongController extends Controller
     /**
      * Remove the specified Song from storage.
      */
+
+
     public function destroy(Song $song)
     {
+
+        //authorized to see if current user is admin
         $user = Auth::user();
         $user->authorizeRoles('admin');
         // Delete the song

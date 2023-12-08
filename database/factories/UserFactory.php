@@ -1,5 +1,9 @@
 <?php
-
+/* User Factory:
+    -  Used for generating fake data for testing purposes
+	- Makes it easy to populate database with data
+    - Specific to User Model
+*/
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
